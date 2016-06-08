@@ -5,9 +5,9 @@ import util.LeitorXML
 /**
  * Created by Cristiano on 03/06/16.
  */
-class LeitorDeXMLTest extends Specification {
+class ReaderXMLTest extends Specification {
 
-  val xmlDeTeste =
+  val xmlToTest =
     <list>
       <negociacao>
         <preco>43.5</preco>
@@ -19,20 +19,20 @@ class LeitorDeXMLTest extends Specification {
     </list>
 
 
-  "LeitorDeXMLTest" should {
+  "ReaderXMLTest" should {
 
-    val negociacoes = LeitorXML.getNegociacoes(xmlDeTeste)
+    val negociacoes = LeitorXML.getNegociacoes(xmlToTest)
     val negociacao = negociacoes.head
 
-    "Quantidade de itens deve ser igual 1" in {
+    "Amount of itens must be equals 1" in {
       negociacoes.size must_== 1
     }
 
-    "a negociação deve ter preco 43.5 " in {
+    "Negotiation must be price equals 43.5 " in {
       negociacao.preco must_== BigDecimal(43.5)
     }
 
-    "a quantidade deve ser igual a 1000  " in {
+    "Amount must be equals 1000  " in {
       negociacao.quantidade must_== 1000
     }
 
