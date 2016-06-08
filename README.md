@@ -10,4 +10,4 @@
 	- SBT
 	- Bootstrap
 	- Json
-	- Consumo de Serviço (WebService)
+	- WebService (REST)
