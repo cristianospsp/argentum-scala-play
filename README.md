@@ -9,5 +9,5 @@
 	- Play Framework
 	- SBT
 	- Bootstrap
-	- Json
+	- Json and XML
 	- WebService (REST)
