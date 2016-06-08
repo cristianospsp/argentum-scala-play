@@ -7,45 +7,45 @@ import java.time.LocalDateTime
  */
 class CandleBuilder {
 
-  var abertura : BigDecimal = 0.0
-  var fechamento : BigDecimal = 0.0
-  var minimo : BigDecimal = 0.0
-  var maximo : BigDecimal = 0.0
+  var opening : BigDecimal = 0.0
+  var closing : BigDecimal = 0.0
+  var minimum : BigDecimal = 0.0
+  var maximum : BigDecimal = 0.0
   var volume : BigDecimal = 0.0
-  var data : LocalDateTime = LocalDateTime.now()
+  var date : LocalDateTime = LocalDateTime.now()
 
-  def comAbertura(primeiroDoDia: BigDecimal) : CandleBuilder = {
-    this.abertura = primeiroDoDia
+  def withOpening(firstOfDay: BigDecimal) : CandleBuilder = {
+    this.opening = firstOfDay
     this
   }
 
-  def comFechamento(ultimoDoDia: BigDecimal) : CandleBuilder = {
-    this.fechamento = ultimoDoDia
+  def withClosing(lasfOfDay: BigDecimal) : CandleBuilder = {
+    this.closing = lasfOfDay
     this
   }
 
-  def comMinimo(minimo: BigDecimal) : CandleBuilder = {
-    this.minimo = minimo
+  def withMinimum(minimum: BigDecimal) : CandleBuilder = {
+    this.minimum = minimum
     this
   }
 
-  def comMaximo(maximo: BigDecimal) : CandleBuilder = {
-    this.maximo = maximo
+  def withMaximum(maximum: BigDecimal) : CandleBuilder = {
+    this.maximum = maximum
     this
   }
 
-  def comVolume(volume: BigDecimal) : CandleBuilder = {
+  def withVolume(volume: BigDecimal) : CandleBuilder = {
     this.volume = volume
     this
   }
 
-  def comData(data: LocalDateTime) : CandleBuilder = {
-    this.data = data
+  def withDate(date: LocalDateTime) : CandleBuilder = {
+    this.date = date
     this
   }
 
-  def gerarCandle(): Candlestick = {
-    Candlestick(abertura, fechamento, minimo, maximo, volume, data)
+  def buildCandle(): Candlestick = {
+    Candlestick(opening, closing, minimum, maximum, volume, date)
   }
 
 

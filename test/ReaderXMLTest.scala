@@ -29,11 +29,11 @@ class ReaderXMLTest extends Specification {
     }
 
     "Negotiation must be price equals 43.5 " in {
-      negociacao.preco must_== BigDecimal(43.5)
+      negociacao.price must_== BigDecimal(43.5)
     }
 
     "Amount must be equals 1000  " in {
-      negociacao.quantidade must_== 1000
+      negociacao.amount must_== 1000
     }
 
   }

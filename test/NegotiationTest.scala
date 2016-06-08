@@ -1,6 +1,6 @@
 import java.time.LocalDateTime
 
-import br.com.caelum.argentum.model.Negotiation
+import br.com.caelum.argentum.model.{CandlestickFactory, Negotiation}
 import org.specs2.mutable.Specification
 
 /**

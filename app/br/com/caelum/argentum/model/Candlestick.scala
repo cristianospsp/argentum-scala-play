@@ -6,20 +6,22 @@ import java.time.format.DateTimeFormatter
 /**
  * Created by Cristiano on 31/05/16.
  */
-final case class Candlestick(val abertura: BigDecimal, val fechamento: BigDecimal, val minimo: BigDecimal,
-                             val maximo: BigDecimal, val volume: BigDecimal, val data: LocalDateTime) {
-  require(abertura >= BigDecimal(0.0))
-  require(fechamento >= BigDecimal(0.0))
-  require(minimo >= BigDecimal(0.0))
-  require(maximo >= BigDecimal(0.0))
+final case class Candlestick(val opening: BigDecimal, val closing: BigDecimal, val minimum: BigDecimal,
+                             val maximum: BigDecimal, val volume: BigDecimal, val date: LocalDateTime) {
+  require(opening >= BigDecimal(0.0))
+  require(closing >= BigDecimal(0.0))
+  require(minimum >= BigDecimal(0.0))
+  require(maximum >= BigDecimal(0.0))
   require(volume >= BigDecimal(0.0))
-  require(maximo >= minimo)
+  require(maximum >= minimum)
 
-  final var formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss")
-  def isAlta(): Boolean = abertura <= fechamento
-  def isBaixa(): Boolean = abertura > fechamento
+  final var defaultDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss")
+
+  def isAlta(): Boolean = opening <= closing
+
+  def isBaixa(): Boolean = opening > closing
 
   override def toString: String = {
-    s"{ (Abertura: ${abertura}) (Fechamento: ${fechamento}) (Minimo: ${minimo}) (Maximo: ${maximo}) (volume: ${volume}) (Data: ${data.format(formatoData)}) }"
+    s"{ (Abertura: ${opening}) (Fechamento: ${closing}) (Minimo: ${minimum}) (Maximo: ${maximum}) (volume: ${volume}) (Data: ${date.format(defaultDateFormat)}) }"
   }
 }

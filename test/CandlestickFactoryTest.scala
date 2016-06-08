@@ -19,19 +19,19 @@ class CandlestickFactoryTest extends Specification {
 
     val candle = new CandlestickFactory().buildCandleToDate(hoje, List(n1, n2, n3, n4))
 
-    "valor minimo deve ser 39.8" in {
-      39.8 must_== (candle.minimo)
+    "value minimum must be 39.8" in {
+      39.8 must_== (candle.minimum)
     }
 
-    "valor maximo deve ser 45.0" in {
-      45.0 must_== (candle.maximo)
+    "value maximum must be 45.0" in {
+      45.0 must_== (candle.maximum)
     }
 
-    "deve ser de alta" in {
+    "must be high" in {
       true equals (candle.isAlta())
     }
 
-    "Nao deve ser de baixa" in {
+    "shoul not br low" in {
       false equals (candle.isBaixa())
     }
 

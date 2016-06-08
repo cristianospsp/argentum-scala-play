@@ -8,14 +8,14 @@ import java.time.LocalDateTime
 object TestCandlestickFactory extends App {
 
 
-  val hoje = LocalDateTime.now();
+  val today = LocalDateTime.now();
 
-  val n1 = Negotiation(BigDecimal(40.5), 100, hoje)
-  val n2 = Negotiation(BigDecimal(45.0), 100, hoje)
-  val n3 = Negotiation(BigDecimal(39.8), 100, hoje)
-  val n4 = Negotiation(BigDecimal(42.3), 100, hoje)
+  val n1 = Negotiation(BigDecimal(40.5), 100, today)
+  val n2 = Negotiation(BigDecimal(45.0), 100, today)
+  val n3 = Negotiation(BigDecimal(39.8), 100, today)
+  val n4 = Negotiation(BigDecimal(42.3), 100, today)
 
-  println(new CandlestickFactory().buildCandleToDate(hoje, List(n1, n2, n3, n4)))
+  println(new CandlestickFactory().buildCandleToDate(today, List(n1, n2, n3, n4)))
 
 
 }

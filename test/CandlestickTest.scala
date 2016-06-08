@@ -12,77 +12,113 @@ class CandlestickTest extends Specification {
     val hoje = LocalDateTime.now();
     val candleZero = new CandlestickFactory().buildCandleToDate(hoje, List())
 
-    "Abertura deve ser igual ZERO" in {
-      0.0 must_== (candleZero.abertura)
+    "opening must be equals ZERO" in {
+      0.0 must_== (candleZero.opening)
     }
 
-    "Fechamento deve ser igual ZERO" in {
-      0.0 must_== (candleZero.fechamento)
+    "closing must be equals ZERO" in {
+      0.0 must_== (candleZero.closing)
     }
 
-    "Minimo deve ser igual ZERO" in {
-      0.0 must_== (candleZero.minimo)
+    "Minimum must be equals ZERO" in {
+      0.0 must_== (candleZero.minimum)
     }
 
-    "Maximo deve ser igual ZERO" in {
-      0.0 must_== (candleZero.maximo)
+    "Maximum must be equals ZERO" in {
+      0.0 must_== (candleZero.maximum)
     }
 
-    "Volume deve ser igual ZERO" in {
+    "Volume must be equals ZERO" in {
       0.0 must_== (candleZero.volume)
     }
 
     val n1 = Negotiation(BigDecimal(40.5), 100, hoje)
     val candle = new CandlestickFactory().buildCandleToDate(hoje, List(n1))
 
-    "Minimo deve ser igual maximo" in {
-      candle.minimo must_== candle.maximo
+    "Minimum must be equals maximum" in {
+      candle.minimum must_== candle.maximum
     }
 
     val n2 = Negotiation(BigDecimal(40.5), 100, hoje)
 
-    "Lancar Exception quando Minimo > Maximo" in {
+    "throws exceptions when minimum > maximum" in {
       Candlestick(BigDecimal(10.0), BigDecimal(12.0), BigDecimal(10.0), BigDecimal(9.0), BigDecimal(100.0), hoje) must throwA[IllegalArgumentException]
     }
 
-    "Lancar Exception quando Abertura < 0" in {
+    "throws exceptions when opening < 0" in {
       Candlestick(BigDecimal(-1.0), BigDecimal(10.0), BigDecimal(10.0), BigDecimal(10.0), BigDecimal(100.0), hoje) must throwA[IllegalArgumentException]
     }
 
-    "Lancar Exception quando Fechamento < 0" in {
+    "throws exceptions when closing < 0" in {
       Candlestick(BigDecimal(10.0), BigDecimal(-1.0), BigDecimal(10.0), BigDecimal(10.0), BigDecimal(100.0), hoje) must throwA[IllegalArgumentException]
     }
 
-    "Lancar Exception quando Minimo < 0" in {
+    "throws exceptions when Minimum < 0" in {
       Candlestick(BigDecimal(10.0), BigDecimal(10.0), BigDecimal(-1.0), BigDecimal(10.0), BigDecimal(100.0), hoje) must throwA[IllegalArgumentException]
     }
 
-    "Lancar Exception quando Maximo < 0" in {
+    "throws exceptions when Maximum < 0" in {
       Candlestick(BigDecimal(10.0), BigDecimal(10.0), BigDecimal(10.0), BigDecimal(-1.0), BigDecimal(100.0), hoje) must throwA[IllegalArgumentException]
     }
 
-    "Lancar Exception quando Voume < 0" in {
+    "throws exceptions when Voume < 0" in {
       Candlestick(BigDecimal(10.0), BigDecimal(10.0), BigDecimal(10.0), BigDecimal(10.0), BigDecimal(-1.0), hoje) must throwA[IllegalArgumentException]
     }
 
-
-
-    "Negociacoes em ordem [crescente ou decrescente] para mesma data/hora devem ter os mesmos valores" in {
+    "Negoctiations ordered [asc or desc] to the same date/hour must have the same values" in {
       val negociacoes = List(Negotiation(BigDecimal(40.5), 100, hoje), Negotiation(BigDecimal(45.0), 100, hoje), Negotiation(BigDecimal(39.8), 100, hoje), Negotiation(BigDecimal(42.3), 100, hoje))
-      val crescente = negociacoes.sortBy(_.preco)
-      val deCrescente = negociacoes.sortBy(_.preco).reverse
+      val crescente = negociacoes.sortBy(_.price)
+      val deCrescente = negociacoes.sortBy(_.price).reverse
       val candleCrescente = new CandlestickFactory().buildCandleToDate(hoje, crescente)
       val candleDecrescente = new CandlestickFactory().buildCandleToDate(hoje, deCrescente)
 
-      candleCrescente.maximo must_== candleDecrescente.maximo
+      candleCrescente.maximum must_== candleDecrescente.maximum
     }
 
-
-    "quandoAberturaIgualFechamentoEhAlta" in {
+    "when opening equals closing the candle is high" in {
       val negociacoes = List(Negotiation(BigDecimal(10.0), 100, hoje), Negotiation(BigDecimal(10.0), 100, hoje), Negotiation(BigDecimal(10.0), 100, hoje), Negotiation(BigDecimal(10.0), 100, hoje))
       val candle = new CandlestickFactory().buildCandleToDate(hoje, negociacoes)
 
-      candle.isAlta() equals(true)
+      candle.isAlta() equals (true)
+    }
+
+    val today = LocalDateTime.now()
+    val neg1 = Negotiation(BigDecimal(40.5), 100, today)
+    val neg2 = Negotiation(BigDecimal(45.0), 100, today)
+    val neg3 = Negotiation(BigDecimal(49.8), 100, today)
+    val neg4 = Negotiation(BigDecimal(42.3), 100, today)
+    val neg5 = Negotiation(BigDecimal(48.8), 100, today.plusDays(1))
+    val neg6 = Negotiation(BigDecimal(49.3), 100, today.plusDays(1))
+    val neg7 = Negotiation(BigDecimal(51.8), 100, today.plusDays(2))
+    val neg8 = Negotiation(BigDecimal(52.3), 100, today.plusDays(2))
+    val candles = new CandlestickFactory().buildCandle(List(neg1, neg2, neg3, neg4, neg5, neg6, neg7, neg8))
+
+    "mustCreateListWith3Candles" in {
+      candles.size must_== 3
+    }
+
+    "the first candle must be opening Equals 40.5" >> {
+      candles(0).opening must_== 40.5
+    }
+
+    "the first candle must be closing Equals 42.3" >> {
+      candles(0).closing must_== 42.3
+    }
+
+    "the second candle must be opening Equals 48.8" >> {
+      candles(1).opening must_== 48.8
+    }
+
+    "the second candle must be closing Equals 49.3" >> {
+      candles(1).closing must_== 49.3
+    }
+
+    "the third candle must be opening Equals 51.8" >> {
+      candles(2).opening must_== 51.8
+    }
+
+    "the third candle must be closing Equals 52.3" >> {
+      candles(2).closing must_== 52.3
     }
 
 
