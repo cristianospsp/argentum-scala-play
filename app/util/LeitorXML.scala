@@ -1,6 +1,6 @@
 package util
 
-import br.com.caelum.argentum.modelo.Negociacao
+import br.com.caelum.argentum.model.Negotiation
 
 import scala.xml.NodeSeq
 
@@ -9,7 +9,7 @@ import scala.xml.NodeSeq
  */
 object LeitorXML {
 
-  def getNegociacoes(xml : NodeSeq) : List[Negociacao] = {
+  def getNegociacoes(xml : NodeSeq) : List[Negotiation] = {
     (xml \\ "negociacao").map(n => new TransformaXmlToNegociacao().fromXML(n)).toList
   }
 

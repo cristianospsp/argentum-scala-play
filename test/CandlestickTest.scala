@@ -1,6 +1,6 @@
 import java.time.LocalDateTime
 
-import br.com.caelum.argentum.modelo.{Candlestick, CandlestickFactory, Negociacao}
+import br.com.caelum.argentum.model.{Candlestick, CandlestickFactory, Negotiation}
 import org.specs2.mutable.Specification
 
 /**
@@ -8,7 +8,7 @@ import org.specs2.mutable.Specification
  */
 class CandlestickTest extends Specification {
 
-  "Candlestick" should {
+  "Candlestick" >> {
     val hoje = LocalDateTime.now();
     val candleZero = new CandlestickFactory().buildCandleToDate(hoje, List())
 
@@ -32,14 +32,14 @@ class CandlestickTest extends Specification {
       0.0 must_== (candleZero.volume)
     }
 
-    val n1 = Negociacao(BigDecimal(40.5), 100, hoje)
+    val n1 = Negotiation(BigDecimal(40.5), 100, hoje)
     val candle = new CandlestickFactory().buildCandleToDate(hoje, List(n1))
 
     "Minimo deve ser igual maximo" in {
       candle.minimo must_== candle.maximo
     }
 
-    val n2 = Negociacao(BigDecimal(40.5), 100, hoje)
+    val n2 = Negotiation(BigDecimal(40.5), 100, hoje)
 
     "Lancar Exception quando Minimo > Maximo" in {
       Candlestick(BigDecimal(10.0), BigDecimal(12.0), BigDecimal(10.0), BigDecimal(9.0), BigDecimal(100.0), hoje) must throwA[IllegalArgumentException]
@@ -68,7 +68,7 @@ class CandlestickTest extends Specification {
 
 
     "Negociacoes em ordem [crescente ou decrescente] para mesma data/hora devem ter os mesmos valores" in {
-      val negociacoes = List(Negociacao(BigDecimal(40.5), 100, hoje), Negociacao(BigDecimal(45.0), 100, hoje), Negociacao(BigDecimal(39.8), 100, hoje), Negociacao(BigDecimal(42.3), 100, hoje))
+      val negociacoes = List(Negotiation(BigDecimal(40.5), 100, hoje), Negotiation(BigDecimal(45.0), 100, hoje), Negotiation(BigDecimal(39.8), 100, hoje), Negotiation(BigDecimal(42.3), 100, hoje))
       val crescente = negociacoes.sortBy(_.preco)
       val deCrescente = negociacoes.sortBy(_.preco).reverse
       val candleCrescente = new CandlestickFactory().buildCandleToDate(hoje, crescente)
@@ -79,7 +79,7 @@ class CandlestickTest extends Specification {
 
 
     "quandoAberturaIgualFechamentoEhAlta" in {
-      val negociacoes = List(Negociacao(BigDecimal(10.0), 100, hoje), Negociacao(BigDecimal(10.0), 100, hoje), Negociacao(BigDecimal(10.0), 100, hoje), Negociacao(BigDecimal(10.0), 100, hoje))
+      val negociacoes = List(Negotiation(BigDecimal(10.0), 100, hoje), Negotiation(BigDecimal(10.0), 100, hoje), Negotiation(BigDecimal(10.0), 100, hoje), Negotiation(BigDecimal(10.0), 100, hoje))
       val candle = new CandlestickFactory().buildCandleToDate(hoje, negociacoes)
 
       candle.isAlta() equals(true)
