@@ -1,0 +1,40 @@
+@import br.com.caelum.argentum.model.Negotiation
+
+@(negociacoes: List[Negotiation])
+
+@mainteste("Teste Play-Scala") {
+
+
+	<div class="panel with-nav-tabs panel-default">
+		<div class="panel-heading">
+			General View
+		</div>
+
+		<div class="panel-body">
+			<div class="tab-content">
+				<div class="panel panel-default">
+					<table class="table">
+						<tr>
+							<td>Price</td>
+							<td>Amount</td>
+							<td>Size</td>
+							<td>Date</td>
+						</tr>
+						@for(n <- negociacoes) {
+							<tr>
+								<td>@n.price</td>
+								<td>@n.amount</td>
+								<td>@n.volume</td>
+								<td>@n.date</td>
+							</tr>
+						}
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+}
