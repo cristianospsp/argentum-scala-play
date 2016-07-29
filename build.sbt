@@ -11,7 +11,9 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   specs2 % Test,
+  "com.adrianhurt" %% "play-bootstrap" % "1.0-P25-B3",
   "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+
