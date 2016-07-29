@@ -10,9 +10,9 @@ import br.com.caelum.argentum.model.Negotiation
 class TransformaXmlToNegociacao {
 
   def fromXML(node: scala.xml.Node): Negotiation = {
-    val price = BigDecimal((node \ "price").text.toDouble)
-    val amount = (node \ "amount").text.trim.toInt
-    val dateInMilliSeconds = (node \ "date" \ "time").text
+    val price = BigDecimal((node \ "preco").text.toDouble)
+    val amount = (node \ "quantidade").text.trim.toInt
+    val dateInMilliSeconds = (node \ "data" \ "time").text
     val instant = Instant.ofEpochMilli(dateInMilliSeconds.toLong)
     Negotiation(price , amount, LocalDateTime.ofInstant(instant, ZoneOffset.UTC))
   }
