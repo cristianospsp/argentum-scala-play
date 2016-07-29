@@ -10,7 +10,7 @@ import scala.xml.NodeSeq
 object LeitorXML {
 
   def getNegociacoes(xml : NodeSeq) : List[Negotiation] = {
-    (xml \\ "negotiation").map(n => new TransformaXmlToNegociacao().fromXML(n)).toList
+    (xml \\ "negociacao").map(n => new TransformaXmlToNegociacao().fromXML(n)).toList
   }
 
 }
