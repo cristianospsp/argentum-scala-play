@@ -6,6 +6,7 @@ import br.com.caelum.argentum.model.Negotiation
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.libs.json.{JsValue, Json, Writes}
 import play.api.mvc.{Action, Controller}
+import util.WebServiceClient
 
 
 /**
@@ -30,8 +31,17 @@ class ArgentumController @Inject()(val messagesApi: MessagesApi) extends Control
     val n2 = Negotiation(BigDecimal(44.5), 100, today)
     val n3 = Negotiation(BigDecimal(55.5), 100, today)
     val negs = List(n, n2, n3)
-    val json = Json.toJson(negs)
-    Ok(views.html.teste(negs))
+    val negociacoes_ = new WebServiceClient().getNegotiationsWebService()
+    //val json = Json.toJson(negociacoes_)
+    Ok(views.html.home(negociacoes_))
+  }
+
+  def about = Action {
+    Ok(views.html.about())
+  }
+
+  def contact = Action {
+    Ok(views.html.contact())
   }
 
 }
