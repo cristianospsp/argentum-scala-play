@@ -1,0 +1,60 @@
+@import br.com.caelum.argentum.model.Negotiation
+
+@(negociacoes: List[Negotiation])(implicit messages: Messages)
+
+@template("Home",
+	scripts = Html(
+		""" |<script>$(document).ready(function() {$('#table-negociacoes').DataTable();});</script>
+			|<script src="https://code.highcharts.com/stock/highstock.js"></script>
+			|<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+		""".stripMargin)) {
+
+
+	<div class="page-header">
+		<h1></h1>
+	</div>
+
+	<div class="panel with-nav-tabs panel-default">
+
+		<div class="panel-heading">
+			<ul class="nav nav-tabs" rule="tablist">
+				<li class="active"><a data-toggle="tab" role="tab" href="#lista">All negociations</a></li>
+				<li><a id="tab-indicadores" data-toggle="tab" role="tab" href="#indicadores">Indicadores</a></li>
+			</ul>
+		</div>
+
+		<div class="panel-body">
+			<div class="tab-content">
+				<div id="lista" class="tab-pane fade in active">
+					<div class="table-responsive">
+						<table id="table-negociacoes" class="table table-hover">
+							<thead>
+								<tr>
+									<th>Price</th>
+									<th>Amount</th>
+									<th>Size</th>
+									<th>Date</th>
+								</tr>
+							</thead>
+							<tbody>
+							@for(n <- negociacoes) {
+								<tr>
+									<td>@n.price</td>
+									<td>@n.amount</td>
+									<td>@n.volume</td>
+									<td>@n.date</td>
+								</tr>
+							}
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div id="indicadores" class="tab-pane fade">
+					exibir indicadores
+				</div>
+			</div>
+		</div>
+	</div>
+
+}
