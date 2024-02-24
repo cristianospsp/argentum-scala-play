@@ -1,0 +1,80 @@
+repo_name: cristianospsp/argentum-scala-play
+report_id: 66a5fcf269230eec499e1450627b2467
+version: 0.1
+repo_type: Public
+timestamp: '2024-02-24T20:54:41+00:00'
+requested_by: cristianospsp
+provider: github
+branch: master
+detected_tools_count: 6
+tools:
+- name: JavaScript
+  description: Lightweight, interpreted, object-oriented language with first-class
+    functions
+  website_url: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source_url: https://github.com/cristianospsp/argentum-scala-play
+  detection_source: Repo Metadata
+- name: Scala
+  description: A pure-bred object-oriented language that runs on the JVM
+  website_url: http://www.scala-lang.org/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1012/scala.png
+  detection_source_url: https://github.com/cristianospsp/argentum-scala-play
+  detection_source: Repo Metadata
+- name: Akka
+  description: Build powerful concurrent &amp; distributed applications more easily
+  website_url: http://akka.io/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Concurrency Frameworks
+  image_url: https://img.stackshare.io/service/1773/bxLhidly.png
+  detection_source_url: https://github.com/cristianospsp/argentum-scala-play/blob/master/app/controllers/AsyncController.scala
+  detection_source: app/controllers/AsyncController.scala
+  last_updated_by: Cristiano de Oliveira
+  last_updated_on: 2016-06-08 18:06:58.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/cristianospsp/argentum-scala-play
+  detection_source: Repo Metadata
+- name: Logback
+  description: A logging framework for Java applications
+  website_url: https://logback.qos.ch/
+  open_source: false
+  hosted_saas: false
+  category: Monitoring
+  sub_category: Log Management
+  image_url: https://img.stackshare.io/service/2923/05518ecaa42841e834421e9d6987b04f_400x400.png
+  detection_source_url: https://github.com/cristianospsp/argentum-scala-play/blob/master/conf/logback.xml
+  detection_source: conf/logback.xml
+  last_updated_by: Cristiano de Oliveira
+  last_updated_on: 2016-06-08 18:06:58.000000000 Z
+- name: ScalaTest
+  description: A testing tool in the Scala ecosystem
+  website_url: http://www.scalatest.org
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/4371/frame_apngframe0.png
+  detection_source_url: https://github.com/cristianospsp/argentum-scala-play/blob/master/build.sbt
+  detection_source: build.sbt
+  last_updated_by: Cristianospsp
+  last_updated_on: 2016-08-22 21:22:48.000000000 Z
